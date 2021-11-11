@@ -8,9 +8,9 @@ export const theme = {
       secondaryDark: "#fb8500",
     },
     status: {
-      alert: "	#ff3838",
+      error: "#ff3838",
       warning: "#ffb302",
-      unstable: "#fce83a",
+      alert: "#fce83a",
       success: "#56f000",
       enabled: "#2dccff",
       disabled: "#9ea7ad",

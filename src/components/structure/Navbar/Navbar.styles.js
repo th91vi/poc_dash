@@ -12,8 +12,6 @@ export const NavContent = styled.ul`
   justify-content: space-between;
   align-items: center;
   list-style-type: none;
-  padding-inline-start: 0;
-  padding-inline-end: 0;
 
   li {
     color: ${({ theme }) => `${theme.colors.neutral.lightest}`};
