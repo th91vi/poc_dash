@@ -7,11 +7,15 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@material-ui/core": "^5.0.0-beta.5",
+    "@material-ui/styled-engine-sc": "^5.0.0-beta.5",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
     "@types/react-dom": "^17.0.11",
     "@types/styled-components": "^5.1.15",
     "@vitejs/plugin-react": "^1.0.0",
