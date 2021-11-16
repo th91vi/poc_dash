@@ -21,8 +21,6 @@ export const productSlice = createSlice({
   initialState,
   reducers: {
     SEARCH_SKU: (state, { payload: { skuValue } }) => {
-      if (!items[0].hasOwnProperty(skuValue)) return;
-
       const foundSkus = items.map((item) => ({
         sku: item[skuValue],
       }));
@@ -31,22 +29,15 @@ export const productSlice = createSlice({
       state.productList = foundSkus;
     },
     SEARCH_PROPERTY: (state, { payload: { fieldName, propertyName } }) => {
-      console.log(fieldName, propertyName);
-      if (!items[0].hasOwnProperty(propertyName)) return;
-
       const productListCopy = [...state.productList];
 
       const newProductsList = productListCopy.map((product, index) => {
-        if (!product.hasOwnProperty(propertyName)) {
-          const newProductData = {
-            ...product,
-            [propertyName]: items[index][propertyName],
-          };
+        const newProductData = {
+          ...product,
+          [fieldName]: items[index][propertyName],
+        };
 
-          return newProductData;
-        } else {
-          return product;
-        }
+        return newProductData;
       });
 
       state[fieldName] = propertyName;
