@@ -3,43 +3,85 @@ import { useSelector } from "react-redux";
 export function Preview() {
   const { productList } = useSelector((state) => state.product);
 
-  const findProperty = (property) => {
-    if (!items[0].hasOwnProperty(property)) return;
-
-    const newProductsList = productsList.map((product, index) => {
-      if (!product.hasOwnProperty(property)) {
-        const newSku = { ...product, [property]: items[index][property] };
-
-        return newSku;
-      }
-    });
-
-    setProductsList(newProductsList);
-  };
-
-  const handleSearch = (property) => {
-    if (!productsList.length) {
-      countSkus(property);
-    } else {
-      findProperty(property);
-    }
-  };
-
   return (
     <div>
       <h2>Preview</h2>
-      <input type="text" onChange={(e) => handleSearch(e.target.value)} />
-      <ul>
-        {productList.map((item, index) => (
-          <li key={index}>
-            {Object.entries(item).map((entry, index) => (
-              <pre key={index}>
-                <strong>{`${entry[0]}: `}</strong>
-                {`${entry[1]}`}
-              </pre>
-            ))}
-          </li>
-        ))}
+      <ul style={{ listStyleType: "none" }}>
+        {productList.map(
+          (
+            {
+              sku,
+              title,
+              description,
+              price,
+              link,
+              image_link,
+              brand,
+              activeIngredient,
+              availability,
+            },
+            index
+          ) => {
+            return (
+              <li key={index} style={{ marginTop: "1rem" }}>
+                {!!sku && (
+                  <pre>
+                    <strong>SKU: </strong>
+                    {sku}
+                  </pre>
+                )}
+                {!!title && (
+                  <pre>
+                    <strong>Título: </strong>
+                    {title}
+                  </pre>
+                )}
+                {!!description && (
+                  <pre>
+                    <strong>Descrição: </strong>
+                    {description}
+                  </pre>
+                )}
+                {!!price && (
+                  <pre>
+                    <strong>Preço: </strong>
+                    {price}
+                  </pre>
+                )}
+                {!!link && (
+                  <pre>
+                    <strong>Link: </strong>
+                    {link}
+                  </pre>
+                )}
+                {!!image_link && (
+                  <pre>
+                    <strong>Imagem: </strong>
+                    {image_link}
+                  </pre>
+                )}
+                {!!brand && (
+                  <pre>
+                    <strong>Fabricante: </strong>
+                    {brand}
+                  </pre>
+                )}
+                {!!activeIngredient && (
+                  <pre>
+                    <strong>Ingrediente ativo: </strong>
+                    {activeIngredient}
+                  </pre>
+                )}
+                {!!availability && (
+                  <pre>
+                    <strong>Disponibilidade: </strong>
+                    {availability}
+                  </pre>
+                )}
+              </li>
+            );
+          }
+        )}
       </ul>
     </div>
   );

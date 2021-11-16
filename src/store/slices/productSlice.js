@@ -9,8 +9,8 @@ const initialState = {
   description: "",
   price: "",
   link: "",
-  imageSource: "",
-  manufacturer: "",
+  image_link: "",
+  brand: "",
   activeIngredient: "",
   availability: "",
   productList: [],
@@ -30,9 +30,31 @@ export const productSlice = createSlice({
       state.sku = skuValue;
       state.productList = foundSkus;
     },
+    SEARCH_PROPERTY: (state, { payload: { fieldName, propertyName } }) => {
+      console.log(fieldName, propertyName);
+      if (!items[0].hasOwnProperty(propertyName)) return;
+
+      const productListCopy = [...state.productList];
+
+      const newProductsList = productListCopy.map((product, index) => {
+        if (!product.hasOwnProperty(propertyName)) {
+          const newProductData = {
+            ...product,
+            [propertyName]: items[index][propertyName],
+          };
+
+          return newProductData;
+        } else {
+          return product;
+        }
+      });
+
+      state[fieldName] = propertyName;
+      state.productList = newProductsList;
+    },
   },
 });
 
-export const { SEARCH_SKU } = productSlice.actions;
+export const { SEARCH_SKU, SEARCH_PROPERTY } = productSlice.actions;
 
 export default productSlice.reducer;
