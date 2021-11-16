@@ -1,20 +1,7 @@
-import { useState } from "react";
-import mockData from "../../../../mock/4bio.json";
+import { useSelector } from "react-redux";
 
 export function Preview() {
-  const [productsList, setProductsList] = useState([]);
-
-  const items = mockData.channel.item;
-
-  const countSkus = (skuValue) => {
-    if (!items[0].hasOwnProperty(skuValue)) return;
-
-    const foundSkus = items.map((item) => ({
-      sku: item[skuValue],
-    }));
-
-    setProductsList(foundSkus);
-  };
+  const { productList } = useSelector((state) => state.product);
 
   const findProperty = (property) => {
     if (!items[0].hasOwnProperty(property)) return;
@@ -43,7 +30,7 @@ export function Preview() {
       <h2>Preview</h2>
       <input type="text" onChange={(e) => handleSearch(e.target.value)} />
       <ul>
-        {productsList.map((item, index) => (
+        {productList.map((item, index) => (
           <li key={index}>
             {Object.entries(item).map((entry, index) => (
               <pre key={index}>

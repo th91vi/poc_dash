@@ -1,6 +1,10 @@
 import { TextInput } from "../../form/TextField";
+import { useDispatch } from "react-redux";
+
+import { SEARCH_SKU } from "../../../store/slices/productSlice";
 
 export function Editor() {
+  const dispatch = useDispatch();
   return (
     <div>
       <h2>Editor</h2>
@@ -10,6 +14,7 @@ export function Editor() {
         mb="1"
         label="SKU"
         placeholder="Exemplo: {{.gtin}}"
+        onChange={(e) => dispatch(SEARCH_SKU({ skuValue: e.target.value }))}
       />
 
       <TextInput
