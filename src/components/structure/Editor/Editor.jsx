@@ -17,7 +17,7 @@ export function Editor() {
         fullWidth={true}
         mt="1"
         mb="1"
-        label="SKU"
+        label="EAN"
         placeholder="Exemplo: {{.gtin}}"
         onChange={(e) => dispatch(SEARCH_SKU({ skuValue: e.target.value }))}
       />
